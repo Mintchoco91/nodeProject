@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
+var path = require('path');
 const movies = require('../data/movie.json');
 
 router.get('/', function(req, res){
-    res.send(movies);
+    //res.send(movies);
+    res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
 router.get('/:id', function(req, res){
