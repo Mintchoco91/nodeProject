@@ -20,6 +20,7 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
+//vue 연결부분 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // route
