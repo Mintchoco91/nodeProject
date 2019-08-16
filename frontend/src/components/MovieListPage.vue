@@ -1,6 +1,6 @@
 <template>
     <div class="movies">
-        <h1>영화 목록</h1>
+        <h1>TEST</h1>
         <div class="container">
             <div class="outer">
                 <div class="inner">
