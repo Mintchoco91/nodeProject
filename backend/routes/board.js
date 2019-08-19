@@ -4,7 +4,7 @@ var path = require('path');
 //const movies = require('../data/movie.json');
 
 router.get('/', function(req, res){
-
+    console.log("!");
     const testarr = {
         testval3: "테스트값3",
     };
