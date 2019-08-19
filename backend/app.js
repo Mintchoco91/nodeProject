@@ -38,7 +38,7 @@ app.use(cookieParser());
 
 // route
 //app.use('/movies', movieRouter);
-app.use('/board', boardRouter);
+app.use('/', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
