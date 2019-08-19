@@ -5,12 +5,8 @@ const movies = require('../data/movie.json');
 
 router.get('/', function(req, res){
     //render, send, sendFile
-    console.log("movie");
-    //res.send(movies);
-    //res.json({test : 'testtt'});
+    //res.json({textvals : '가나다라마바사'});
     res.json(movies);
-    //res.render('index', { title: 'Express' });
-    //res.sendFile(path.join(__dirname, '../public', 'index.html'))
 });
 
 router.get('/:id', function(req, res){
