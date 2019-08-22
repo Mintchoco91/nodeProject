@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import DetailMoviePage from '@/components/DetailMoviePage'
 import BoardListPage from '@/components/BoardListPage'
+import BoardWritePage from '@/components/BoardWritePage'
 
 
 Vue.use(Router)
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'BoardList',
       component: BoardListPage
+    },
+    {
+      path: '/boardWrite',
+      name: 'BoardWrite',
+      component: BoardWritePage
     },
     {
       path: '/:id',

@@ -11,6 +11,12 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/boardWrite', function(req, res){
+    Board.find({}, function (err, boards) {
+        console.log(boards);
+        res.json(boards);
+    });
+});
 /*
 router.get('/:id', function(req, res){
     const id = parseInt(req.params.id, 10);
