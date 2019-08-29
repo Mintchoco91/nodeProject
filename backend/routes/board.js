@@ -12,7 +12,6 @@ router.get('/', function(req, res){
 });
 
 router.get('/boardWritePage/:id', function(req, res){
-    console.log(req.params.id);
     Board.findOne({_id: req.params.id}, function (err, board) {
         res.json(board);
     })
@@ -54,9 +53,6 @@ router.post('/boardUpdate/:id', function(req, res){
     board.title = req.body.title;
     board.contents = req.body.contents;
     board.author = req.body.author;
-
-    console.log("id : " + req.params.id);
-    console.log("board : " + board);
 
     Board.findOneAndUpdate({_id : req.params.id},{$set: {title : board.title, contents : board.contents, author: board.author}}, function (err, board) {
         if(err){
