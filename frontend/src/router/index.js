@@ -1,9 +1,9 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
-import DetailMoviePage from '@/components/DetailMoviePage'
-import BoardListPage from '@/components/BoardListPage'
-import BoardWritePage from '@/components/BoardWritePage'
+import boardListPage from '@/components/boardListPage'
+import boardWritePage from '@/components/boardWritePage'
+import boardDetailPage from '@/components/boardDetailPage'
 
 
 Vue.use(Router)
@@ -12,18 +12,18 @@ export default new Router({
   //mode : 'history',
   routes: [{
       path: '/',
-      name: 'BoardList',
-      component: BoardListPage
+      name: 'boardListPage',
+      component: boardListPage
     },
     {
-      path: '/boardWrite',
-      name: 'BoardWrite',
-      component: BoardWritePage
+      path: '/boardWritePage/:id',
+      name: 'boardWritePage',
+      component: boardWritePage
     },
     {
-      path: '/:id',
-      name: 'detailmovie',
-      component: DetailMoviePage
+      path: '/boardDetailPage/:id',
+      name: 'boardDetailPage',
+      component: boardDetailPage
     }
   ]
 })

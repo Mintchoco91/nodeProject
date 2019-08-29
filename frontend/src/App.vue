@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/logo.png" @click="goToList">
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods:{
+    goToList(){
+        this.$router.push({
+            name: 'boardListPage'
+        })
+    }
+  }
 }
 </script>
 
