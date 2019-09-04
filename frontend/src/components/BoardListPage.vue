@@ -20,14 +20,32 @@
                 <button @click="fn_del">삭제</button>
             </td>
         </tr>
-
+        
+        <div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=7WdjBQw0JVti0EBOaRwi&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=hLiDdL2uhPtsftcU" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+        
         </table>
     </template>
 
 <script>
 export default {
     created() {
-        this.$http.get("/boards")
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        var code = url.searchParams.get("code");
+        var state = url.searchParams.get("state");
+        
+        //여기서 하면 보안오류때문에 안된다. 서버에서해야할듯
+        /* 
+        var authurl = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=7WdjBQw0JVti0EBOaRwi&client_secret=8dDGGH3_O1&code="+code+"&state="+state;
+        if(code != null){
+          this.$http
+            .get(authurl)
+            .then(response => {
+                console.log(response);
+            });
+        }
+        */
+        this.$http.get("/boards?code="+code+"&state="+state)
             .then(response => {
                 this.boards = response.data;
             });
@@ -47,7 +65,7 @@ export default {
             })
         },
         fn_del () {
-            alert("구현중입니다.");
+            console.log("!!");
         },        
     }
 };

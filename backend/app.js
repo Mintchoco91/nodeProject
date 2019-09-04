@@ -10,6 +10,14 @@ var bodyParser = require('body-parser');
 const boardRouter = require('./routes/board');
 
 var app = express();
+//naver login
+var client_id = '7WdjBQw0JVti0EBOaRwi';
+var client_secret = '8dDGGH3_O1';
+var state = "http%3A%2F%2Flocalhost%3A3000";
+var redirectURI = encodeURI("http://localhost:3000");
+var api_url = "";
+
+
 
 
 // mongodb setup

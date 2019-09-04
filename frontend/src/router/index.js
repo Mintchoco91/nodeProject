@@ -10,11 +10,17 @@ Vue.use(Router)
 
 export default new Router({
   //mode : 'history',
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'boardListPage',
       component: boardListPage
-    },
+    },    
+    {
+      path: '/callback',
+      name: 'boardListPagecallback',
+      component: boardListPage
+    },    
     {
       path: '/boardWritePage/:id',
       name: 'boardWritePage',
