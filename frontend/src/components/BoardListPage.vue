@@ -47,7 +47,7 @@ export default {
             })
         },
         fn_del () {
-            alert("구현중");
+            alert("구현중입니다.");
         },        
     }
 };
