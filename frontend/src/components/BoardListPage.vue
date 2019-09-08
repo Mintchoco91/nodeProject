@@ -20,9 +20,6 @@
                 <button @click="fn_del">삭제</button>
             </td>
         </tr>
-        
-        <div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=7WdjBQw0JVti0EBOaRwi&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=hLiDdL2uhPtsftcU" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
-        
         </table>
     </template>
 
@@ -34,14 +31,33 @@ export default {
         var code = url.searchParams.get("code");
         var state = url.searchParams.get("state");
 
+        //게시판 정보 로딩
         this.$http.get("/boards")
             .then(response => {
                 this.boards = response.data;
             });
+
+        if(code != null && state != null){
+        //token Get
         this.$http.get("/callback?code="+code+"&state="+state)
             .then(response => {
-                console.log(response);
+                var token = response.data.access_token;
+                
+                //유효하지않은 토큰일경우
+                if(token != undefined) {
+                    
+                //네이버 사용자 정보 Get
+                this.$http.get("/member?token="+token)
+                    .then(response => {
+                        var msg = "[네이버정보] ID : " + response.data.response.id + "/ nickname : " + response.data.response.nickname + "/ email : " + response.data.response.email
+                        console.log(msg);
+                    });
+                }
             });
+        }
+
+
+            
     },
     data() {
         return {boards: []};

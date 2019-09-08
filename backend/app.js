@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 // get movie router
 //const movieRouter = require('./routes/movie');
 const boardRouter = require('./routes/board');
+const memberRouter = require('./routes/member');
 
 var app = express();
 //naver login
@@ -18,28 +19,58 @@ var redirectURI = encodeURI("http%3A%2F%2Flocalhost%3A3000%2F");
 var api_url = "";
 
 app.get('/callback', function (req, res) {
-    code = req.query.code;
-    state = req.query.state;
+  code = req.query.code;
+  state = req.query.state;
 
-    api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id='
-     + client_id + '&client_secret=' + client_secret + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state;
- 
-    var request = require('request');
-    var options = {
-        url: api_url,
-        headers: {'X-Naver-Client-Id':client_id, 'X-Naver-Client-Secret': client_secret}
-     };
-     
-    request.get(options, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
-        res.end(body);
-      } else {
-        res.status(response.statusCode).end();
-        console.log('error = ' + response.statusCode);
-      }
-    });
+  api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id='
+   + client_id + '&client_secret=' + client_secret + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state;
+
+  var request = require('request');
+  var options = {
+      url: api_url,
+      headers: {'X-Naver-Client-Id':client_id, 'X-Naver-Client-Secret': client_secret}
+   };
+   
+  request.get(options, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
+      res.end(body);
+    } else {
+      res.status(response.statusCode).end();
+      console.log('error = ' + response.statusCode);
+    }
   });
+});
+
+app.get('/member', function (req, res) {
+   var api_url = 'https://openapi.naver.com/v1/nid/me';
+   var request = require('request');
+   //var token = req.query.state;
+   var token = req.query.token;
+   var header = "Bearer " + token; // Bearer 다음에 공백 추가
+  
+   console.log("#token :" + token);
+
+   var options = {
+       url: api_url,
+       headers: {'Authorization': header}
+    };
+    
+   request.get(options, function (error, response, body) {
+     if (!error && response.statusCode == 200) {
+       res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
+       res.end(body);
+       console.log("네이버 정보 : " + body);
+     } else {
+       console.log('error');
+       if(response != null) {
+         res.status(response.statusCode).end();
+         console.log('error = ' + response.statusCode);
+       }
+     }
+   });
+ });
+
 
 // mongodb setup
 var mongoose = require('mongoose');
@@ -87,6 +118,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // route (*use시 /가아니라 이름을다르게준다.)
 app.use('/boards', boardRouter);
+app.use('/members', memberRouter);
 //app.use('/movies', movieRouter);
 
 // catch 404 and forward to error handler
