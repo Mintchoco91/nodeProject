@@ -33,21 +33,14 @@ export default {
         var url = new URL(url_string);
         var code = url.searchParams.get("code");
         var state = url.searchParams.get("state");
-        
-        //여기서 하면 보안오류때문에 안된다. 서버에서해야할듯
-        /* 
-        var authurl = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=7WdjBQw0JVti0EBOaRwi&client_secret=8dDGGH3_O1&code="+code+"&state="+state;
-        if(code != null){
-          this.$http
-            .get(authurl)
-            .then(response => {
-                console.log(response);
-            });
-        }
-        */
-        this.$http.get("/boards?code="+code+"&state="+state)
+
+        this.$http.get("/boards")
             .then(response => {
                 this.boards = response.data;
+            });
+        this.$http.get("/callback?code="+code+"&state="+state)
+            .then(response => {
+                console.log(response);
             });
     },
     data() {
