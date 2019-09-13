@@ -21,7 +21,8 @@
     "indent-string": "^4.0.0",
     "vue": "^2.6.10",
     "vue-cli": "^2.9.6",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-session": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -1,13 +1,16 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueSession from 'vue-session'
 import boardListPage from '@/components/boardListPage'
 import boardWritePage from '@/components/boardWritePage'
 import boardDetailPage from '@/components/boardDetailPage'
-import memberLoginPage from '@/components/memberLogin'
-import memberJoinPage from '@/components/memberJoin'
+import memberLoginPage from '@/components/memberLoginPage'
+import memberJoinPage from '@/components/memberJoinPage'
+import memberDetailPage from '@/components/memberDetailPage'
 
 
+Vue.use(VueSession)
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +45,11 @@ export default new Router({
       path: '/memberJoinPage',
       name: 'memberJoinPage',
       component: memberJoinPage
+    },
+    {
+      path: '/memberDetailPage',
+      name: 'memberDetailPage',
+      component: memberDetailPage
     }
   ]
 })

@@ -5,12 +5,26 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
+
 // get movie router
 //const movieRouter = require('./routes/movie');
 const boardRouter = require('./routes/board');
 const memberRouter = require('./routes/member');
-
 var app = express();
+
+/* 쓰려다가 VUE session 으로 교체함. - front에서 쓰는게 불편
+//세션_File Store
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
+app.use(session({
+  secret: '@#@$MYSIGN#@$#$',
+  resave: false,
+  saveUninitialized: true
+  //store: new FileStore()
+ }));
+*/
+
 //naver login
 var client_id = '7WdjBQw0JVti0EBOaRwi';
 var client_secret = '8dDGGH3_O1';
@@ -18,12 +32,13 @@ var state = "http%3A%2F%2Flocalhost%3A3000";
 var redirectURI = encodeURI("http%3A%2F%2Flocalhost%3A3000%2F");
 var api_url = "";
 
+//naver callback
 app.get('/callback', function (req, res) {
   code = req.query.code;
   state = req.query.state;
 
   api_url = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id='
-   + client_id + '&client_secret=' + client_secret + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state;
+   + client_id + '&client_secret=' + client_secret + '&redirect_uri=' + redirectURI + '&code=' + code + '&state=' + state + "&auth_type=reprompt";
 
   var request = require('request');
   var options = {
@@ -42,26 +57,38 @@ app.get('/callback', function (req, res) {
   });
 });
 
+//naver getInfo
 app.get('/member', function (req, res) {
    var api_url = 'https://openapi.naver.com/v1/nid/me';
    var request = require('request');
-   //var token = req.query.state;
    var token = req.query.token;
    var header = "Bearer " + token; // Bearer 다음에 공백 추가
   
-   console.log("#token :" + token);
-
    var options = {
        url: api_url,
        headers: {'Authorization': header}
     };
     
+   //req.session.token = token;
+
    request.get(options, function (error, response, body) {
      if (!error && response.statusCode == 200) {
        res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
        res.end(body);
-       console.log("네이버 정보 : " + body);
+
+       //[MEMO] 사용하려면 객체에 한번 담아줘야 한다.
+       obj = JSON.parse(body);
+     
+       /* express 식 session처리. 일단안쓰므로 주석처리
+       req.session.status = "1";
+       req.session.name = obj.response.name;
+       req.session.nickname = obj.response.nickname;
+       req.session.email = obj.response.email;
+      */
+
+       console.log("네이버 정보_app.js : " + body);
      } else {
+        //req.session.status = "0";
        console.log('error');
        if(response != null) {
          res.status(response.statusCode).end();

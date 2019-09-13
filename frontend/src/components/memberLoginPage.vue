@@ -14,7 +14,7 @@
             <button @click="goToList">취소</button>       
         </td>
     </tr>
-    <div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=7WdjBQw0JVti0EBOaRwi&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=hLiDdL2uhPtsftcU" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
+    <div id="naverIdLogin"><a id="naverIdLogin_loginButton" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=7WdjBQw0JVti0EBOaRwi&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&state=hLiDdL2uhPtsftcU&auth_type=reprompt" role="button"><img src="https://static.nid.naver.com/oauth/big_g.PNG" width=320></a></div>
     </table>
 
     

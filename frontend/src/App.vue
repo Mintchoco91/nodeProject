@@ -1,10 +1,16 @@
 <template>
 
   <div id="app">
-    <div class="topcorner">
+    <div class="topcorner" v-if="this.message == 'success'">
+      {{name}} 님 안녕하세요.
+      <button @click="goToLogout">로그아웃</button>
+      <button @click="goToMemberInfo">내정보</button>
+    </div> 
+    <div class="topcorner" v-else>
       <button @click="goToLogin">로그인</button>
       <button @click="goToJoin">회원가입</button>
     </div> 
+
      <div class="jb-table">
       <div class="jb-table-row">
         <div class="jb-table-cell" @click="goToList">
@@ -59,6 +65,29 @@
 <script>
 export default {
   name: 'App',
+  beforeCreate () {
+    /*
+    [Session Info]
+    1. Session Set : this.$session.set(KEY,VALUE)
+    2. Session Get : this.$session.get(KEY)
+    3. ITEM 
+    - token : 토큰번호
+    - message : 로그인 후 메세지 (성공시 : "success")
+    - nickname : 닉네임
+    - email : 이메일
+    - name : 이름
+    */
+    this.$session.start();
+  },
+  data () {
+    return {
+      name : this.$session.get("name")
+      ,message : this.$session.get("message")
+    }
+  },
+  created () {
+    //console.log("3")
+  },
   methods:{
     goToLogin(){
         this.$router.push({
@@ -68,6 +97,16 @@ export default {
     goToJoin(){
         this.$router.push({
             name: 'memberJoinPage'
+        })
+    },
+    goToLogout(){
+      this.$session.destroy();
+      alert("로그아웃 되었습니다.");
+      location.reload();
+    },
+    goToMemberInfo(){
+        this.$router.push({
+            name: 'memberDetailPage'
         })
     },    
     goToList(){

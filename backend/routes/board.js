@@ -14,9 +14,22 @@ router.get('/', function(req, res){
  
 router.get('/boardWritePage/:id', function(req, res){
     console.log(req.url);
-    Board.findOne({_id: req.params.id}, function (err, board) {
+
+    var board = new Board();
+    board.title = "";
+    board.contents = "";
+    board.author = "";
+
+    if(req.params.id == "new"){
         res.json(board);
-    })
+    }
+    else{
+        Board.findOne({_id: req.params.id}, function (err, board) {
+            //board.author = "@@";
+            res.json(board);
+        })
+    }
+    
 });
 
 

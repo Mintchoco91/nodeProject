@@ -37,27 +37,30 @@ export default {
                 this.boards = response.data;
             });
 
-        if(code != null && state != null){
+        if(code != null && state != null && this.$session.get("message") != "success"){
         //token Get
         this.$http.get("/callback?code="+code+"&state="+state)
             .then(response => {
                 var token = response.data.access_token;
+                this.$session.set('token', token);
+
+                //토큰이 정상이고 message가 없을경우(성공하면 message : success)
+                if(token != undefined && this.$session.get("message") != "success") {
                 
-                //유효하지않은 토큰일경우
-                if(token != undefined) {
-                    
                 //네이버 사용자 정보 Get
                 this.$http.get("/member?token="+token)
                     .then(response => {
-                        var msg = "[네이버정보] ID : " + response.data.response.id + "/ nickname : " + response.data.response.nickname + "/ email : " + response.data.response.email
-                        console.log(msg);
+                        this.$session.set('message', response.data.message);
+                        this.$session.set('nickname', response.data.response.nickname);
+                        this.$session.set('email', response.data.response.email);
+                        this.$session.set('name', response.data.response.name);
+                        location.reload();
+                        
                     });
+                    
                 }
             });
         }
-
-
-            
     },
     data() {
         return {boards: []};
@@ -69,12 +72,19 @@ export default {
             })              
         },
         goToWritePage () {
-            this.$router.push({
-                name: 'boardWritePage', params: {id: 'new'}
-            })
+            if(this.$session.get("message") == "success"){
+                this.$router.push({
+                    name: 'boardWritePage', params: {id: 'new'}
+                })
+            }
+            else{
+                this.$router.push({
+                    name: 'memberLoginPage'
+                })
+            }
         },
         fn_del () {
-            console.log("!!");
+            console.log("구현중");
         },        
     }
 };

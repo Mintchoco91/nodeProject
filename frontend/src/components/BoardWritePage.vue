@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <td width="100">글쓴이</td>
-            <td width="500"><input type="text" id="author" value="master" readonly="true"></td>
+            <td width="500"><input type="text" id="author"  :value="board.author" readonly="true"></td>
         </tr>
         <tr>
             <td v-if="this.$route.params.id == 'new'" width="500" colspan="2">   
@@ -26,18 +26,26 @@
 </template>
 
 <script>
+
 /* eslint-disable */
 export default {
+    data() {
+        return {
+            //v-model시 이곳에서 초기화
+            board: []
+        };
+    },
     created() {
         this
             .$http
             .get("/boards/boardWritePage/" + this.$route.params.id)
-            .then(response => {
+            .then(response => {                
+                //로그인 처리
+                if(this.$route.params.id == "new"){
+                    response.data.author = this.$session.get("name");
+                }
                 this.board = response.data;
             });
-    },
-    data() {
-        return {board: []};
     },
     methods: {
         fn_submit() {
