@@ -71,11 +71,12 @@ export default {
     1. Session Set : this.$session.set(KEY,VALUE)
     2. Session Get : this.$session.get(KEY)
     3. ITEM 
-    - token : 토큰번호
-    - message : 로그인 후 메세지 (성공시 : "success")
+    - id : ID(실제 아이디가 아닌 고유값)
+    - name : 이름
     - nickname : 닉네임
     - email : 이메일
-    - name : 이름
+    - message : 로그인 후 메세지 (성공시 : "success")
+    - token : 토큰번호
     */
     this.$session.start();
   },

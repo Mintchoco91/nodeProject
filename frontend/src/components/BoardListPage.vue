@@ -50,10 +50,11 @@ export default {
                 //네이버 사용자 정보 Get
                 this.$http.get("/member?token="+token)
                     .then(response => {
-                        this.$session.set('message', response.data.message);
+                        this.$session.set('id', response.data.response.id);
+                        this.$session.set('name', response.data.response.name);
                         this.$session.set('nickname', response.data.response.nickname);
                         this.$session.set('email', response.data.response.email);
-                        this.$session.set('name', response.data.response.name);
+                        this.$session.set('message', response.data.message);
                         location.reload();
                         
                     });
