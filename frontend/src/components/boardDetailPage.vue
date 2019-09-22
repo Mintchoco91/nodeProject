@@ -3,7 +3,7 @@
         <tr>
             <td width="100">제목</td>
             <td width="500">{{board.title}}</td>
-            </tr>
+        </tr>
             <tr>
                 <td width="100">내용</td>
                 <td width="500">{{board.contents}}</td>
