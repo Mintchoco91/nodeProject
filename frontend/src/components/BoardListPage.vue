@@ -1,11 +1,11 @@
 <template>
     <table border="1" align="center">
-        <tr>
+        <tr style="background-color:#CCCCCC">
             <td width="100">선택</td>
             <td width="100">제목</td>
             <td width="500">내용</td>
             <td width="100">글쓴이</td>
-            <td width="100">작성시간</td>
+            <td width="100">작성시간d</td>
         </tr>
         <tr v-for="board in boards" :key="board.id">
             <td width="100"><input type="checkbox" v-model="selboards"></td>
