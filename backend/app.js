@@ -98,31 +98,25 @@ app.get('/member', function (req, res) {
    });
  });
 
-
-// *************************************************************************************[mongodb 로컬설정 시작]
-console.log("!!!!!"+__dirname);
-/*
-var mongoose = require('mongoose');
-var promise = mongoose.connect('mongodb://localhost/mydb', {
-  useNewUrlParser: true
-});
- 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    // we're connected!
-    console.log('connected successfully');
-});
-*/
-// *************************************************************************************[mongodb 로컬설정 끝]
-
-// *************************************************************************************[mongodb 서버설정 시작]
-/*
-var mongoose = require('mongoose');
-// CONNECT TO MONGODB SERVER
-mongoose.connect(process.env.MONGODB_URI);
-*/
-// *************************************************************************************[mongodb 서버설정 끝]
+//****************************************************************************** MongoDB 설정부분 (__dirname 로 분기처리)
+if(__dirname.includes("C:\\")){ //Local
+  var mongoose = require('mongoose');
+  var promise = mongoose.connect('mongodb://localhost/mydb', {
+    useNewUrlParser: true
+  });
+   
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
+  db.once('open', function() {
+      // we're connected!
+      console.log('connected successfully');
+  });
+}else{ //Server
+  var mongoose = require('mongoose');
+  // CONNECT TO MONGODB SERVER
+  mongoose.connect(process.env.MONGODB_URI); //heroku config 로 확인가능
+}
+//******************************************************************************
 
 //express-vue선언 
 /*
