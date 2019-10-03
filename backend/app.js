@@ -100,6 +100,7 @@ app.get('/member', function (req, res) {
 
 
 // mongodb setup
+/*
 var mongoose = require('mongoose');
 var promise = mongoose.connect('mongodb://localhost/mydb', {
   useNewUrlParser: true
@@ -111,7 +112,7 @@ db.once('open', function() {
     // we're connected!
     console.log('connected successfully');
 });
-
+*/
 //express-vue선언 
 /*
 var expressVue = require("express-vue");
