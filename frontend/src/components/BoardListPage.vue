@@ -17,6 +17,7 @@
         <tr>
             <td colspan="5">
                 <button @click="goToWritePage">등록</button>
+                <button @click="goToTempWritePage">비회원등록(임시)</button>
                 <button @click="fn_del">삭제</button>
             </td>
         </tr>
@@ -83,6 +84,11 @@ export default {
                     name: 'memberLoginPage'
                 })
             }
+        },
+        goToTempWritePage () {
+            this.$router.push({
+                    name: 'boardWritePage', params: {id: 'new'}
+            })
         },
         fn_del () {
             console.log("구현중");
