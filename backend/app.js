@@ -99,7 +99,7 @@ app.get('/member', function (req, res) {
  });
 
 
-// mongodb setup
+// *************************************************************************************[mongodb 로컬설정 시작]
 /*
 var mongoose = require('mongoose');
 var promise = mongoose.connect('mongodb://localhost/mydb', {
@@ -113,6 +113,13 @@ db.once('open', function() {
     console.log('connected successfully');
 });
 */
+// *************************************************************************************[mongodb 로컬설정 끝]
+
+// *************************************************************************************[mongodb 서버설정 시작]
+var mongoose = require('mongoose');
+// CONNECT TO MONGODB SERVER
+mongoose.connect(process.env.MONGODB_URI);
+// *************************************************************************************[mongodb 서버설정 끝]
 
 //express-vue선언 
 /*
