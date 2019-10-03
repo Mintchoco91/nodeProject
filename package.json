@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
-    ,"test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Mintchoco91/nodeProject/issues"
   },
-  "homepage": "https://github.com/Mintchoco91/nodeProject#readme"
+  "homepage": "https://github.com/Mintchoco91/nodeProject#readme",
+  "dependencies": {
+    "http-errors": "^1.7.3"
+  }
 }
