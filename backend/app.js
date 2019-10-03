@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-//
+//test
 // get movie router
 //const movieRouter = require('./routes/movie');
 const boardRouter = require('./routes/board');
