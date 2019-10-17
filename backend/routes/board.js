@@ -11,7 +11,7 @@ router.get('/', function(req, res){
     });
 });
 
-//
+//test
 router.get('/boardWritePage/:id', function(req, res){
     console.log(req.url);
 
