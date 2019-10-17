@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 //const movieRouter = require('./routes/movie');
 const boardRouter = require('./routes/board');
 const memberRouter = require('./routes/member');
+const apiRouter = require('./routes/api');
 var app = express();
 
 /* 쓰려다가 VUE session 으로 교체함. - front에서 쓰는게 불편
@@ -152,6 +153,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // route (*use시 /가아니라 이름을다르게준다.)
 app.use('/boards', boardRouter);
 app.use('/members', memberRouter);
+app.use('/api', apiRouter);
+
 //app.use('/movies', movieRouter);
 
 // catch 404 and forward to error handler

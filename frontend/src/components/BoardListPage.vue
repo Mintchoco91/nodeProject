@@ -19,6 +19,7 @@
                 <button @click="goToWritePage">등록</button>
                 <button @click="goToTempWritePage">비회원등록(임시)</button>
                 <button @click="fn_del">삭제</button>
+                <button @click="fn_api">API호출</button>
             </td>
         </tr>
         </table>
@@ -92,7 +93,20 @@ export default {
         },
         fn_del () {
             console.log("구현중");
-        },        
+        },
+        fn_api() {
+            var api_url = 'https://kkwnodeproject.herokuapp.com/api/'
+            //var api_url = 'http://localhost:3000/api/'
+            this
+                .$http
+                .get(api_url)
+                .then(response => {        
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log('failed', error)
+                });
+        }
     }
 };
 </script>
