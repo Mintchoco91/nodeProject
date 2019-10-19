@@ -15,7 +15,7 @@ var cors = require('cors');
 var app = express();
 
 // CORS 설정
-//app.use(cors());
+app.use(cors());
 
 /* 쓰려다가 VUE session 으로 교체함. - front에서 쓰는게 불편
 //세션_File Store
