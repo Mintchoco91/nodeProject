@@ -96,12 +96,12 @@ export default {
         },
         fn_api() {
             var api_url = 'https://kkwnodeproject.herokuapp.com/api/'
-            //var api_url = 'http://localhost:3000/api/'
             this
                 .$http
                 .get(api_url)
                 .then(response => {        
                     console.log(response);
+                    alert(response.data);
                 })
                 .catch(error => {
                     console.log('failed', error)
