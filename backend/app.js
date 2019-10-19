@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 //test
 // get movie router
 //const movieRouter = require('./routes/movie');
-var cors = require('cors'); 
 const boardRouter = require('./routes/board');
 const memberRouter = require('./routes/member');
 const apiRouter = require('./routes/api');
@@ -119,19 +118,7 @@ if(__dirname.includes("C:\\")){ //Local
   mongoose.connect(process.env.MONGODB_URI); //heroku config 로 확인가능
 }
 
-var allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 
-  // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  }
-  else {
-    next();
-  }
-};
 //******************************************************************************
 
 //express-vue선언 
