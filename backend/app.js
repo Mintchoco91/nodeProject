@@ -8,14 +8,14 @@ var bodyParser = require('body-parser');
 //test
 // get movie router
 //const movieRouter = require('./routes/movie');
+var cors = require('cors');
 const boardRouter = require('./routes/board');
 const memberRouter = require('./routes/member');
 const apiRouter = require('./routes/api');
-//var cors = require('cors');
 var app = express();
 
 // CORS 설정
-//app.use(cors());
+app.use(cors());
 
 /* 쓰려다가 VUE session 으로 교체함. - front에서 쓰는게 불편
 //세션_File Store
