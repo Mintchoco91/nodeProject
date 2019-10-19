@@ -11,7 +11,11 @@ var bodyParser = require('body-parser');
 const boardRouter = require('./routes/board');
 const memberRouter = require('./routes/member');
 const apiRouter = require('./routes/api');
+var cors = require('cors');
 var app = express();
+
+// CORS 설정
+app.use(cors());
 
 /* 쓰려다가 VUE session 으로 교체함. - front에서 쓰는게 불편
 //세션_File Store
@@ -117,6 +121,20 @@ if(__dirname.includes("C:\\")){ //Local
   // CONNECT TO MONGODB SERVER
   mongoose.connect(process.env.MONGODB_URI); //heroku config 로 확인가능
 }
+
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+  // intercept OPTIONS method
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+};
 //******************************************************************************
 
 //express-vue선언 
