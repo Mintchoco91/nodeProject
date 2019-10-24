@@ -8,6 +8,7 @@ import boardDetailPage from '@/components/boardDetailPage'
 import memberLoginPage from '@/components/memberLoginPage'
 import memberJoinPage from '@/components/memberJoinPage'
 import memberDetailPage from '@/components/memberDetailPage'
+import chatPage from '@/components/chatPage'
 
 
 Vue.use(VueSession)
@@ -50,6 +51,11 @@ export default new Router({
       path: '/memberDetailPage',
       name: 'memberDetailPage',
       component: memberDetailPage
+    },
+    {
+      path: '/chatPage',
+      name: 'chatPage',
+      component: chatPage
     }
   ]
 })

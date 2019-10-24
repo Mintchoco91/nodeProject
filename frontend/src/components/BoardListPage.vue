@@ -20,6 +20,7 @@
                 <button @click="goToTempWritePage">비회원등록(임시)</button>
                 <button @click="fn_del">삭제</button>
                 <button @click="fn_api">API호출</button>
+                <button @click="fn_chat">채팅</button>
             </td>
         </tr>
         </table>
@@ -106,6 +107,11 @@ export default {
                 .catch(error => {
                     console.log('failed', error)
                 });
+        },
+        fn_chat(){
+                this.$router.push({
+                    name: 'chatPage'
+                })
         }
     }
 };
