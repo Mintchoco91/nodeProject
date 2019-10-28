@@ -9,7 +9,7 @@ import VueSocketIOExt from 'vue-socket.io-extended';
 import io from 'socket.io-client';
  
 //const socket = io('http://localhost:3000');
-const socket = io('http://kkwnodeproject.herokuapp.com/');
+const socket = io('https://kkwnodeproject.herokuapp.com/');
 
 
 Vue.use(VueSocketIOExt, socket);
