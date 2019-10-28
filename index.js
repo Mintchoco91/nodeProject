@@ -22,6 +22,28 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+//socket통신
+const io = require('socket.io')(server);
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+
+
+//socket통신
+io.on('connection', (socket) => {
+  console.log('Hello');
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+  socket.on('disconnect', () => {
+  console.log('user disconnected');
+  });
+});
 
 /**
  * Listen on provided port, on all network interfaces.
