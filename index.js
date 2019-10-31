@@ -35,6 +35,7 @@ server.on('listening', onListening);
 
 
 //socket통신
+/*
 io.on('connection', (socket) => {
   console.log('Hello');
   socket.on('chat message', (msg) => {
@@ -44,7 +45,7 @@ io.on('connection', (socket) => {
   console.log('user disconnected');
   });
 });
-
+*/
 /**
  * Normalize a port into a number, string, or false.
  */
