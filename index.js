@@ -34,7 +34,7 @@ server.on('listening', onListening);
 
 
 
-//socket통신
+///socket통신
 /*.
 io.on('connection', (socket) => {
   console.log('Hello');
