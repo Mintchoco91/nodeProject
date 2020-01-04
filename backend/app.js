@@ -73,7 +73,7 @@ app.get('/callback', function (req, res) {
   });
 });
 
-//naver getInfo.
+//naver getInfo
 app.get('/member', function (req, res) {
    var api_url = 'https://openapi.naver.com/v1/nid/me';
    var request = require('request');
